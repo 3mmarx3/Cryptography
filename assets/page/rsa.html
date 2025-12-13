@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AES Encryption</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/main.css">
+  <link rel="stylesheet" href="./assets/style/main.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+    <main class="main-content-wrapper">
+            <header>
+        <div class="header-wrapper">
+  <div class="container-default w-container">
+    <div class="header-content-wrapper">
+      <!-- الجانب الأيسر: اللوجو + الروابط -->
+      <div class="header-left-side">
+        <a href="./index.html" class="header-logo-link w-nav-brand">
+          <img src="https://cdn.prod.website-files.com/64d2cc2d27b51cf1b517c011/6616b1c13ffb5841a23a15ea_logo-cryptoverse-x-webflow-template.png" alt="Logo - Cryptoverse X Webflow Template">
+        </a>
+
+        <nav class="header-nav-menu-wrapper">
+          <ul class="header-nav-menu-list">
+            <li class="header-nav-list-item">
+              <a href="./index.html" class="header-nav-link">Home</a>
+            </li>
+            <li class="header-nav-list-item">
+              <a href="https://eng-ammar.com/page/about.php" class="header-nav-link">About</a>
+            </li>
+            <li class="header-nav-list-item">
+              <a href="https://eng-ammar.com/page/project.php" class="header-nav-link">Blog</a>
+            </li>
+            <li class="header-nav-list-item">
+              <a href="https://eng-ammar.com" class="btn-primary small w-button">Get started</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+<div class="header-right-side">
+  <div class="social-media-links-container">
+    <a href="https://www.facebook.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Facebook">
+      <i class="bi bi-facebook" aria-hidden="true"></i>
+    </a>
+
+    <a href="https://www.instagram.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Instagram">
+      <i class="bi bi-instagram" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/eng-ammar-ahmed/" target="_blank" class="social-link-single" aria-label="LinkedIn">
+      <i class="bi bi-linkedin" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+  </header>
+
+
+
+<div class="card ">
+  <h1>RSA Manual Encryption</h1>
+  <div class="subtitle">Enter Your Own Public & Private Keys</div>
+  <div class="row">
+    <div>
+      <label for="pubE">Public Key (e)</label>
+      <input id="pubE" placeholder="Example: 17">
+    </div>
+    <div>
+      <label for="modN">Modulus (n)</label>
+      <input id="modN" placeholder="Example: 3233">
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label for="privD">Private Key (d)</label>
+      <input id="privD" placeholder="Example: 2753">
+    </div>
+    <div>
+      <label for="modN2">Modulus (n)</label>
+      <input id="modN2" placeholder="Same n">
+    </div>
+  </div>
+  <label for="message">Message</label>
+  <textarea id="message" rows="3" placeholder="Write your message here"></textarea>
+  <button onclick="encrypt()">Encrypt</button>
+  <div class="box" id="encrypted"></div>
+  <button onclick="decrypt()">Decrypt</button>
+  <div class="box" id="decrypted"></div>
+  <div class="footer">Educational RSA – Manual Keys Mode</div>
+</div>
+
+
+</main>
+
+<script>
+function isValidNumber(v){
+  return /^[0-9]+$/.test(v)
+}
+
+function modPow(base, exp, mod){
+  let result = 1n;
+  base = base % mod;
+  while(exp > 0n){
+    if(exp % 2n === 1n) result = (result * base) % mod;
+    base = (base * base) % mod;
+    exp = exp / 2n;
+  }
+  return result;
+}
+
+function encrypt(){
+  let eVal = document.getElementById("pubE").value.trim();
+  let nVal = document.getElementById("modN").value.trim();
+  let msg  = document.getElementById("message").value;
+
+  if(!eVal || !nVal) return alert("Enter public key values");
+  if(!isValidNumber(eVal) || !isValidNumber(nVal)) return alert("Public key must be numbers only");
+
+  let e = BigInt(eVal);
+  let n = BigInt(nVal);
+  let out = [];
+
+  for (let i = 0; i < msg.length; i++) {
+    let charCode = BigInt(msg.charCodeAt(i));
+    let encryptedChar = modPow(charCode, e, n).toString();
+    out.push(encryptedChar);
+  }
+
+  document.getElementById("encrypted").textContent = out.join(" ");
+  document.getElementById("decrypted").textContent = "—";
+}
+
+function decrypt(){
+  let dVal = document.getElementById("privD").value.trim();
+  let nVal = document.getElementById("modN2").value.trim() || document.getElementById("modN").value.trim();
+  if(!dVal || !nVal) return alert("Enter private key values");
+  if(!isValidNumber(dVal) || !isValidNumber(nVal)) return alert("Private key must be numbers only");
+
+  let d = BigInt(dVal);
+  let n = BigInt(nVal);
+  let data = document.getElementById("encrypted").textContent.split(" ").filter(x=>x);
+  if(data.length === 0) return alert("No encrypted text to decrypt.");
+
+  let decryptedChars = [];
+  for (const cipherText of data) {
+    let decryptedCode = modPow(BigInt(cipherText), d, n);
+    decryptedChars.push(String.fromCharCode(Number(decryptedCode)));
+  }
+
+  document.getElementById("decrypted").textContent = decryptedChars.join("");
+}
+</script>
+</body>
+</html>

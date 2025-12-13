@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AES Encryption</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../style/main.css">
+  <link rel="stylesheet" href="./assets/style/main.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+    <main class="main-content-wrapper">
+            <header>
+        <div class="header-wrapper">
+  <div class="container-default w-container">
+    <div class="header-content-wrapper">
+      <!-- الجانب الأيسر: اللوجو + الروابط -->
+      <div class="header-left-side">
+        <a href="./index.html" class="header-logo-link w-nav-brand">
+          <img src="https://cdn.prod.website-files.com/64d2cc2d27b51cf1b517c011/6616b1c13ffb5841a23a15ea_logo-cryptoverse-x-webflow-template.png" alt="Logo - Cryptoverse X Webflow Template">
+        </a>
+
+        <nav class="header-nav-menu-wrapper">
+          <ul class="header-nav-menu-list">
+            <li class="header-nav-list-item">
+              <a href="./index.html" class="header-nav-link">Home</a>
+            </li>
+            <li class="header-nav-list-item">
+              <a href="https://eng-ammar.com/page/about.php" class="header-nav-link">About</a>
+            </li>
+            <li class="header-nav-list-item">
+              <a href="https://eng-ammar.com/page/project.php" class="header-nav-link">Blog</a>
+            </li>
+            <li class="header-nav-list-item">
+              <a href="https://eng-ammar.com" class="btn-primary small w-button">Get started</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+<div class="header-right-side">
+  <div class="social-media-links-container">
+    <a href="https://www.facebook.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Facebook">
+      <i class="bi bi-facebook" aria-hidden="true"></i>
+    </a>
+
+    <a href="https://www.instagram.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Instagram">
+      <i class="bi bi-instagram" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/eng-ammar-ahmed/" target="_blank" class="social-link-single" aria-label="LinkedIn">
+      <i class="bi bi-linkedin" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+  </header>
+
+<div class="card">
+  <h1>Hill Cipher Fully Dynamic</h1>
+  <label for="matrixSize">Matrix Size (N x N)</label>
+  <input id="matrixSize" type="number" min="2" max="10" value="2" onchange="generateMatrix()">
+  <div class="matrix-container" id="matrix"></div>
+  <label for="message">Message</label>
+  <textarea id="message" placeholder="Letters only"></textarea>
+  <button onclick="encrypt()">Encrypt</button>
+  <div class="box" id="encrypted"></div>
+  <button onclick="decrypt()">Decrypt</button>
+  <div class="box" id="decrypted">—</div>
+  <div class="footer">Educational Hill Cipher – Fully Dynamic</div>
+</div>
+
+</main>
+<script>
+function mod(n,m){return((n%m)+m)%m;}
+function matrixDeterminant(mat){
+  let N=mat.length;
+  if(N===1) return mat[0][0];
+  if(N===2) return mat[0][0]*mat[1][1]-mat[0][1]*mat[1][0];
+  let det=0;
+  for(let j=0;j<N;j++){
+    let submat=[];
+    for(let r=1;r<N;r++){
+      let row=[];
+      for(let c=0;c<N;c++){
+        if(c!==j) row.push(mat[r][c]);
+      }
+      submat.push(row);
+    }
+    let sign=(j%2===0)?1:-1;
+    det+=sign*mat[0][j]*matrixDeterminant(submat);
+  }
+  return det;
+}
+function modInverse(a,m){a=mod(a,m);for(let x=1;x<m;x++) if(mod(a*x,m)===1) return x;return null;}
+function getCofactor(mat,p,q,N){
+  let i=0,j=0,temp=[];
+  for(let row=0;row<N;row++){
+    for(let col=0;col<N;col++){
+      if(row!==p&&col!==q){
+        if(!temp[i]) temp[i]=[];
+        temp[i][j++]=mat[row][col];
+        if(j===N-1){j=0;i++;}
+      }
+    }
+  }
+  return temp;
+}
+function getAdjoint(mat){
+  let N=mat.length,adj=[];
+  for(let i=0;i<N;i++){
+    adj[i]=[];
+    for(let j=0;j<N;j++){
+      let cofactor=getCofactor(mat,i,j,N);
+      let sign=((i+j)%2===0)?1:-1;
+      adj[i][j]=mod(sign*matrixDeterminant(cofactor),26);
+    }
+  }
+  let adjTransposed=[];
+  for(let i=0;i<N;i++){
+    adjTransposed[i]=[];
+    for(let j=0;j<N;j++){
+      adjTransposed[i][j]=adj[j][i];
+    }
+  }
+  return adjTransposed;
+}
+function getInverseMatrix(mat){
+  let det=matrixDeterminant(mat);
+  let detInv=modInverse(det,26);
+  if(detInv===null) return null;
+  let N=mat.length,adj=getAdjoint(mat),inv=[];
+  for(let i=0;i<N;i++){
+    inv[i]=[];
+    for(let j=0;j<N;j++){
+      inv[i][j]=mod(adj[i][j]*detInv,26);
+    }
+  }
+  return inv;
+}
+function generateMatrix(){
+  let container=document.getElementById("matrix");
+  container.innerHTML='';
+  let size=parseInt(document.getElementById("matrixSize").value);
+  container.style.gridTemplateColumns=`repeat(${size},1fr)`;
+  for(let i=0;i<size*size;i++){
+    let input=document.createElement("input");
+    input.type="number";
+    input.placeholder=`k${i+1}`;
+    container.appendChild(input);
+  }
+}
+function getMatrix(){
+  let size=parseInt(document.getElementById("matrixSize").value);
+  let inputs=document.getElementById("matrix").querySelectorAll("input"),mat=[];
+  if(inputs.length!==size*size) return null;
+  for(let i=0;i<size;i++){
+    let row=[];
+    for(let j=0;j<size;j++){
+      let val=parseInt(inputs[i*size+j].value);
+      if(isNaN(val)) return null;
+      row.push(val);
+    }
+    mat.push(row);
+  }
+  return mat;
+}
+function textToNumbers(text,size){
+  let arr=[],originalLength=text.length;
+  text=text.toUpperCase().replace(/[^A-Z]/g,'');
+  while(text.length%size!==0) text+='X';
+  for(let i=0;i<text.length;i+=size){
+    let row=[];
+    for(let j=0;j<size;j++) row.push(text.charCodeAt(i+j)-65);
+    arr.push(row);
+  }
+  return [arr,originalLength,text.length];
+}
+function numbersToText(arr,originalLength){
+  let fullText=arr.map(r=>r.map(c=>String.fromCharCode(c+65)).join('')).join('');
+  return fullText.substring(0,originalLength);
+}
+function multiplyMatrixVector(mat,vec){
+  let size=mat.length,res=[];
+  for(let i=0;i<size;i++){
+    let sum=0;
+    for(let j=0;j<size;j++) sum+=mat[i][j]*vec[j];
+    res.push(mod(sum,26));
+  }
+  return res;
+}
+function encrypt(){
+  let mat=getMatrix();
+  if(!mat) return alert("Please enter all matrix values.");
+  let size=mat.length;
+  let text=document.getElementById("message").value;
+  if(!text) return alert("Please enter the message.");
+  let [vectors,originalLength,paddedLength]=textToNumbers(text,size);
+  let det=matrixDeterminant(mat);
+  if(modInverse(det,26)===null) return alert("The key matrix is not invertible (Determinant is not coprime to 26). Please change the matrix values.");
+  let result=vectors.map(v=>multiplyMatrixVector(mat,v));
+  document.getElementById("encrypted").textContent=numbersToText(result,paddedLength);
+  document.getElementById("decrypted").textContent="—";
+}
+function decrypt(){
+  let mat=getMatrix();
+  if(!mat) return alert("Please enter all matrix values.");
+  let size=mat.length;
+  let cipherText=document.getElementById("encrypted").textContent;
+  if(!cipherText||cipherText==="—") return alert("Please encrypt a message first.");
+  let det=matrixDeterminant(mat);
+  let detInv=modInverse(det,26);
+  if(detInv===null) return alert("The key matrix is not invertible (Determinant is not coprime to 26). Decryption is impossible.");
+  let invMat=getInverseMatrix(mat);
+  let [vectors,originalLength,paddedLength]=textToNumbers(cipherText,size);
+  let result=vectors.map(v=>multiplyMatrixVector(invMat,v));
+  let decryptedText=numbersToText(result,originalLength);
+  document.getElementById("decrypted").textContent=decryptedText;
+}
+generateMatrix();
+</script>
+</body>
+</html>
