@@ -5,142 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cryptography Algorithms Guide</title>
   <link rel="stylesheet" href="./assets/style/main.css">
+  <link rel="stylesheet" href="./assets/style/style.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-  <style>
 
-p.text-theme-sm.mb-4.text-center.text-gray-500.dark\:text-gray-400 {
-    font-size: small;
-    margin-top: 15px;
-}
-
-
-span._coby {color: #d3fe49;}
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
-    .algorithm-section { margin-bottom: 64px; }
-    .algorithm-image {
-      width: 100%;
-      height: auto;
-      margin-bottom: 48px;
-    }
-
-    .section-separator {
-      border: 0;
-      height: 1px;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-      margin: 64px 0;
-      background-color: #626262;
-    }
-
-    .template-pages---nav-item-link.active {
-      font-weight: bold;
-      color: white;
-      border-left: 3px solid #d3fe49;
-      padding-left: 10px;
-      transition: all 0.2s;
-    }
-    .template-pages---nav-item-link{
-      border-radius: 0 !important;
-    }
-    .container-default { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    .w-layout-grid { display: grid; }
-    .grid-2-columns { grid-template-columns: 1fr 3fr; gap: 40px; }
-    .sticky-top { position: sticky; align-self: start; }
-    .top-24px { top: 24px; }
-    .template-pages---sidebar-navigation { list-style: none; padding: 0; }
-    .template-pages---nav-item-link { display: block; padding: 8px 0; text-decoration: none; color: #bebebe; transition: color 0.2s; }
-  </style>
 </head>
 <body>
 
-<style>
-  #container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgb(0, 0, 0);
-    position: fixed;
-    z-index: 99999999;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 1;
-  }
 
-  .algorithm {
-    color: #ffffff;
-    font-size: 4em;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .show {
-    opacity: 1;
-  }
-
-  .hide {
-    opacity: 0;
-  }
-
-  *{
-    text-decoration: none !important;
-  }
-</style>
+    <main class="main-content-wrapper">
 
 <div id="container">
   <div id="text" class="algorithm"></div>
 </div>
 
-<script>
-  const algorithms = [
-    "RSA",
-    "AES",
-    "DES",
-    "3DES",
-    "Caesar",
-    "Playfair",
-    "Hill",
-    "Substitution",
-    "Simple Block"
-  ];
-
-  const container = document.getElementById("container");
-  const textEl = document.getElementById("text");
-  let index = 0;
-
-  function showNext() {
-    textEl.textContent = algorithms[index];
-    textEl.classList.add("show");
-
-    setTimeout(() => {
-      textEl.classList.remove("show");
-      textEl.classList.add("hide");
-
-      setTimeout(() => {
-        textEl.classList.remove("hide");
-        index++;
-        if (index < algorithms.length) {
-          showNext();
-        } else {
-          container.style.display = "none";
-          sessionStorage.setItem("introPlayed", "true");
-        }
-      }, 200);
-    }, 200);
-  }
-
-  if (!sessionStorage.getItem("introPlayed")) {
-    showNext();
-  } else {
-    container.style.display = "none";
-  }
-</script>
 
 
   <audio id="gear-sound" src="path/to/gear_sound.mp3" preload="auto"></audio>
@@ -150,16 +29,15 @@ span._coby {color: #d3fe49;}
         <div class="header-wrapper">
   <div class="container-default w-container">
     <div class="header-content-wrapper">
-      <!-- الجانب الأيسر: اللوجو + الروابط -->
       <div class="header-left-side">
-        <a href="./index.html" class="header-logo-link w-nav-brand">
+        <a href="https://3mmarx3.github.io/Cryptography/" class="header-logo-link w-nav-brand">
           <img src="https://cdn.prod.website-files.com/64d2cc2d27b51cf1b517c011/6616b1c13ffb5841a23a15ea_logo-cryptoverse-x-webflow-template.png" alt="Logo - Cryptoverse X Webflow Template">
         </a>
 
         <nav class="header-nav-menu-wrapper">
           <ul class="header-nav-menu-list">
             <li class="header-nav-list-item">
-              <a href="./index.html" class="header-nav-link">Home</a>
+              <a href="https://3mmarx3.github.io/Cryptography/" class="header-nav-link">Home</a>
             </li>
             <li class="header-nav-list-item">
               <a href="https://eng-ammar.com/page/about.php" class="header-nav-link">About</a>
@@ -399,13 +277,34 @@ span._coby {color: #d3fe49;}
     </div>
   </div>
 
+  </main>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
     AOS.init();
-    
-    const gearSound = document.getElementById('gear-sound');
-    const sections = document.querySelectorAll('.algorithm-section');
-    const navLinks = document.querySelectorAll('.template-pages---nav-item-link');
+
+    const gearSound = document.getElementById("gear-sound");
+    const sections = document.querySelectorAll(".algorithm-section");
+    const navLinks = document.querySelectorAll(".template-pages---nav-item-link");
+
+    const algorithms = [
+      "RSA",
+      "AES",
+      "DES",
+      "3DES",
+      "Caesar",
+      "Playfair",
+      "Hill",
+      "Substitution",
+      "Simple Block"
+    ];
+
+    const container = document.getElementById("container");
+    const textEl = document.getElementById("text");
+
+    let index = 0;
 
     function playSoundAndVibrate() {
       if (gearSound) {
@@ -418,44 +317,71 @@ span._coby {color: #d3fe49;}
     }
 
     navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
+      link.addEventListener("click", e => {
         e.preventDefault();
-        const targetId = this.getAttribute('href');
+        const targetId = link.getAttribute("href");
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {
-            window.scroll({
-                top: targetElement.offsetTop - 5,
-                behavior: 'smooth'
-            });
-            playSoundAndVibrate();
+          window.scroll({
+            top: targetElement.offsetTop - 5,
+            behavior: "smooth"
+          });
+          playSoundAndVibrate();
         }
       });
     });
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -50% 0px',
-      threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const targetId = `#${entry.target.id}`;
-        const activeLink = document.querySelector(`.template-pages---nav-item-link[href="${targetId}"]`);
-        
+        const activeLink = document.querySelector(
+          `.template-pages---nav-item-link[href="${targetId}"]`
+        );
+
         if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          if (activeLink) {
-            activeLink.classList.add('active');
-          }
+          navLinks.forEach(link => link.classList.remove("active"));
+          if (activeLink) activeLink.classList.add("active");
         }
       });
-    }, observerOptions);
-
-    sections.forEach(section => {
-      observer.observe(section);
+    }, {
+      root: null,
+      rootMargin: "0px 0px -50% 0px",
+      threshold: 0
     });
-  </script>
+
+    sections.forEach(section => observer.observe(section));
+
+    function showNextAlgorithm() {
+      textEl.textContent = algorithms[index];
+      textEl.classList.add("show");
+
+      setTimeout(() => {
+        textEl.classList.remove("show");
+        textEl.classList.add("hide");
+
+        setTimeout(() => {
+          textEl.classList.remove("hide");
+          index++;
+
+          if (index < algorithms.length) {
+            showNextAlgorithm();
+          } else {
+            container.style.display = "none";
+            sessionStorage.setItem("introPlayed", "true");
+          }
+        }, 200);
+      }, 200);
+    }
+
+    if (!sessionStorage.getItem("introPlayed")) {
+      showNextAlgorithm();
+    } else {
+      container.style.display = "none";
+    }
+
+  });
+</script>
+
 </body>
 </html>

@@ -480,6 +480,8 @@ button, [type="button"], [type="reset"] {
   cursor: pointer;
   -webkit-appearance: button;
   border: 0;
+  color: black;
+  margin: 20px 0;
 }
 
 .w-form {
@@ -3446,12 +3448,12 @@ label {
 }
 
 strong {
-  color: #d3fe49;
+  color: #d3fe49 ;
   font-weight: 700;
 }
 
 h2::first-letter {
-  color: #d3fe49;
+  color: #d3fe49 ;
 }
 
 
