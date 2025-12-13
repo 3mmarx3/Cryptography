@@ -8,6 +8,8 @@
     const navLinks = document.querySelectorAll(".template-pages---nav-item-link");
 
     const algorithms = [
+            "Welcome",
+"Eng - Ahmed ",
       "RSA",
       "AES",
       "DES",
