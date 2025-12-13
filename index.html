@@ -3,13 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cryptography Algorithms Guide</title>
+  
+  <title>Complete Guide to Cryptography Algorithms | RSA, AES, DES, 3DES, Caesar, Playfair</title>
+  <meta name="description" content="Comprehensive guide to major cryptography algorithms: RSA, AES, DES, 3DES, Caesar, Playfair, Hill, Substitution, Simple Block. Learn how each algorithm works and its practical applications.">
+  <meta name="keywords" content="cryptography algorithms, RSA, AES, DES, 3DES, Caesar cipher, Playfair cipher, Hill cipher, substitution cipher, block cipher, data encryption, information security">
+  
+  <meta property="og:title" content="Complete Guide to Cryptography Algorithms | RSA, AES, DES, 3DES, Caesar">
+  <meta property="og:description" content="Learn about major cryptography algorithms and how they work to secure your data.">
+  <meta property="og:image" content="./assets/images/crypto-thumbnail.jpg">
+  <meta property="og:url" content="https://yourdomain.com/cryptography-guide">
+  <meta property="og:type" content="website">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Complete Guide to Cryptography Algorithms">
+  <meta name="twitter:description" content="Detailed guide to major cryptography algorithms: RSA, AES, DES, 3DES, Caesar, Playfair, Hill">
+  
+  <link rel="canonical" href="https://yourdomain.com/cryptography-guide">
+  
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="language" content="English">
+  
+  <meta name="author" content="Your Name or Organization">
+  
   <link rel="stylesheet" href="./assets/style/main.css">
   <link rel="stylesheet" href="./assets/style/style.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-
+  
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
+  
+  <meta name="theme-color" content="#2c3e50">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 </head>
 <body>
 
@@ -280,108 +309,7 @@
   </main>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-
-    AOS.init();
-
-    const gearSound = document.getElementById("gear-sound");
-    const sections = document.querySelectorAll(".algorithm-section");
-    const navLinks = document.querySelectorAll(".template-pages---nav-item-link");
-
-    const algorithms = [
-      "RSA",
-      "AES",
-      "DES",
-      "3DES",
-      "Caesar",
-      "Playfair",
-      "Hill",
-      "Substitution",
-      "Simple Block"
-    ];
-
-    const container = document.getElementById("container");
-    const textEl = document.getElementById("text");
-
-    let index = 0;
-
-    function playSoundAndVibrate() {
-      if (gearSound) {
-        gearSound.currentTime = 0;
-        gearSound.play().catch(() => {});
-      }
-      if (navigator.vibrate) {
-        navigator.vibrate(50);
-      }
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href");
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-          window.scroll({
-            top: targetElement.offsetTop - 5,
-            behavior: "smooth"
-          });
-          playSoundAndVibrate();
-        }
-      });
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const targetId = `#${entry.target.id}`;
-        const activeLink = document.querySelector(
-          `.template-pages---nav-item-link[href="${targetId}"]`
-        );
-
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove("active"));
-          if (activeLink) activeLink.classList.add("active");
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: "0px 0px -50% 0px",
-      threshold: 0
-    });
-
-    sections.forEach(section => observer.observe(section));
-
-    function showNextAlgorithm() {
-      textEl.textContent = algorithms[index];
-      textEl.classList.add("show");
-
-      setTimeout(() => {
-        textEl.classList.remove("show");
-        textEl.classList.add("hide");
-
-        setTimeout(() => {
-          textEl.classList.remove("hide");
-          index++;
-
-          if (index < algorithms.length) {
-            showNextAlgorithm();
-          } else {
-            container.style.display = "none";
-            sessionStorage.setItem("introPlayed", "true");
-          }
-        }, 200);
-      }, 200);
-    }
-
-    if (!sessionStorage.getItem("introPlayed")) {
-      showNextAlgorithm();
-    } else {
-      container.style.display = "none";
-    }
-
-  });
-</script>
+<script src="./assets/app/script.js"></script>
 
 </body>
 </html>

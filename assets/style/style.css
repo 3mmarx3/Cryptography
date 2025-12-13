@@ -441,6 +441,18 @@ h2::first-letter {
   color: #d3fe49;
 }
 
+div#text{
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+div#text:first-letter {
+  color: #d3fe49;
+}
+
+
+
+
 .heading-h3-size {
   color: var(--neutral--100);
   font-size: 24px;
