@@ -240,3 +240,32 @@ span._coby{
 
 
 
+
+
+
+h1::first-letter {
+  color: #d3fe49 ;
+}
+
+
+@media screen and (max-width:992px) {
+  body {
+    padding: revert-layer;
+}
+
+.pd---content-inside-card.large.template-pages {
+    padding: 0;
+}
+
+.pd---content-inside-card.template-pages---sidebar {
+    display: none;
+}
+
+.sticky-top.top-24px.static-mbl {
+    display: none;
+}
+
+nav.header-nav-menu-wrapper {
+    display: none;
+}
+}

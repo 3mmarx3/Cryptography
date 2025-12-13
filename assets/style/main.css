@@ -3456,6 +3456,9 @@ h2::first-letter {
   color: #d3fe49 ;
 }
 
+h1::first-letter {
+  color: #d3fe49 ;
+}
 
 blockquote {
   color: var(--neutral--100);
