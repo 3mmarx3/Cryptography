@@ -1,100 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>AES Encryption</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../style/style.css">
-<link rel="stylesheet" href="../style/main.css">
-  <link rel="stylesheet" href="./assets/style/main.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3DES Cipher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/main.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  </head>
 
-</head>
-<body>
-
+  <body>
     <main class="main-content-wrapper">
-            <header>
+      <header>
         <div class="header-wrapper">
-  <div class="container-default w-container">
-    <div class="header-content-wrapper">
-     
-      <div class="header-left-side">
-        <a href="https://3mmarx3.github.io/Cryptography/" class="header-logo-link w-nav-brand">
-          <img src="https://cdn.prod.website-files.com/64d2cc2d27b51cf1b517c011/6616b1c13ffb5841a23a15ea_logo-cryptoverse-x-webflow-template.png" alt="Logo - Cryptoverse X Webflow Template">
-        </a>
+          <div class="container-default w-container">
+            <div class="header-content-wrapper">
+              <div class="header-left-side">
+                <a
+                  href="https://3mmarx3.github.io/Cryptography/"
+                  class="header-logo-link w-nav-brand"
+                >
+                  <img
+                    src="https://cdn.prod.website-files.com/64d2cc2d27b51cf1b517c011/6616b1c13ffb5841a23a15ea_logo-cryptoverse-x-webflow-template.png"
+                  />
+                </a>
 
-        <nav class="header-nav-menu-wrapper">
-          <ul class="header-nav-menu-list">
-            <li class="header-nav-list-item">
-              <a href="https://3mmarx3.github.io/Cryptography/" class="header-nav-link">Home</a>
-            </li>
-            <li class="header-nav-list-item">
-              <a href="https://eng-ammar.com/page/about.php" class="header-nav-link">About</a>
-            </li>
-            <li class="header-nav-list-item">
-              <a href="https://eng-ammar.com/page/project.php" class="header-nav-link">Blog</a>
-            </li>
-            <li class="header-nav-list-item">
-              <a href="https://eng-ammar.com" class="btn-primary small w-button">Get started</a>
-            </li>
-          </ul>
-        </nav>
+                <nav class="header-nav-menu-wrapper">
+                  <ul class="header-nav-menu-list">
+                    <li class="header-nav-list-item">
+                      <a
+                        href="https://3mmarx3.github.io/Cryptography/"
+                        class="header-nav-link"
+                        >Home</a
+                      >
+                    </li>
+                    <li class="header-nav-list-item">
+                      <a
+                        href="https://eng-ammar.com/page/about.php"
+                        class="header-nav-link"
+                        >About</a
+                      >
+                    </li>
+                    <li class="header-nav-list-item">
+                      <a
+                        href="https://eng-ammar.com/page/project.php"
+                        class="header-nav-link"
+                        >Blog</a
+                      >
+                    </li>
+                    <li class="header-nav-list-item">
+                      <a
+                        href="https://eng-ammar.com"
+                        class="btn-primary small w-button"
+                        >Get started</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+              <div class="header-right-side">
+                <div class="social-media-links-container">
+                  <a
+                    href="https://www.facebook.com/3mmarx3/"
+                    target="_blank"
+                    class="social-link-single"
+                    ><i class="bi bi-facebook"></i
+                  ></a>
+                  <a
+                    href="https://www.instagram.com/3mmarx3/"
+                    target="_blank"
+                    class="social-link-single"
+                    ><i class="bi bi-instagram"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/eng-ammar-ahmed/"
+                    target="_blank"
+                    class="social-link-single"
+                    ><i class="bi bi-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="card">
+        <h1>3DES Cipher</h1>
+
+        <label>Secret Key</label>
+        <input id="key" placeholder="Example: mySecretKey" />
+
+        <label>Message</label>
+        <textarea id="message" placeholder="Example: Hello 3DES"></textarea>
+
+        <button onclick="encrypt()">Encrypt</button>
+        <div class="box" id="encrypted"></div>
+
+        <button onclick="decrypt()">Decrypt</button>
+        <div class="box" id="decrypted"></div>
+
+        <div class="footer">Educational 3DES Cipher</div>
       </div>
+    </main>
 
-<div class="header-right-side">
-  <div class="social-media-links-container">
-    <a href="https://www.facebook.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Facebook">
-      <i class="bi bi-facebook" aria-hidden="true"></i>
-    </a>
+    <script>
+      function encrypt() {
+        let key = document.getElementById("key").value.trim();
+        let message = document.getElementById("message").value.trim();
+        if (key === "" || message === "") return alert("Fill all fields");
+        let encrypted = CryptoJS.TripleDES.encrypt(message, key).toString();
+        document.getElementById("encrypted").textContent = encrypted;
+        document.getElementById("decrypted").textContent = "";
+      }
 
-    <a href="https://www.instagram.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Instagram">
-      <i class="bi bi-instagram" aria-hidden="true"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/eng-ammar-ahmed/" target="_blank" class="social-link-single" aria-label="LinkedIn">
-      <i class="bi bi-linkedin" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
-
-    </div>
-  </div>
-</div>
-  </header>
-
-<div class="card">
-  <h1>3DES Cipher</h1>
-  <label for="key">Secret Key</label>
-  <input id="key" placeholder="Enter key">
-  <label for="message">Message</label>
-  <textarea id="message" placeholder="Enter your message"></textarea>
-  <button onclick="encrypt()">Encrypt</button>
-  <div class="box" id="encrypted"></div>
-  <button onclick="decrypt()">Decrypt</button>
-  <div class="box" id="decrypted">—</div>
-  <div class="footer">Educational 3DES Cipher</div>
-</div>
-
-</main>
-
-<script>
-function encrypt(){
-  let key=document.getElementById("key").value;
-  let message=document.getElementById("message").value;
-  if(!key) return alert("Enter a secret key");
-  if(!message) return alert("Enter a message");
-  let encrypted=CryptoJS.TripleDES.encrypt(message,key).toString();
-  document.getElementById("encrypted").textContent=encrypted;
-  document.getElementById("decrypted").textContent="—";
-}
-function decrypt(){
-  let key=document.getElementById("key").value;
-  let cipher=document.getElementById("encrypted").textContent;
-  if(!key) return alert("Enter a secret key");
-  if(!cipher) return alert("Encrypt a message first");
-  let decrypted=CryptoJS.TripleDES.decrypt(cipher,key).toString(CryptoJS.enc.Utf8);
-  document.getElementById("decrypted").textContent=decrypted;
-}
-</script>
-</body>
+      function decrypt() {
+        let key = document.getElementById("key").value.trim();
+        let cipher = document.getElementById("encrypted").textContent.trim();
+        if (key === "" || cipher === "")
+          return alert("Encrypt a message first");
+        let decrypted = CryptoJS.TripleDES.decrypt(cipher, key).toString(
+          CryptoJS.enc.Utf8
+        );
+        if (decrypted === "") return alert("Wrong key or corrupted data");
+        document.getElementById("decrypted").textContent = decrypted;
+      }
+    </script>
+  </body>
 </html>

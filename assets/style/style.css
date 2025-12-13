@@ -682,6 +682,7 @@ strong {
 @media screen and (max-width: 992px) {
   body {
     padding: revert-layer;
+    overflow-y: hidden !important;
   }
 
 
@@ -705,3 +706,6 @@ strong {
     display: none;
   }
 }
+
+
+/*  */
