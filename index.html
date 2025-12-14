@@ -1,314 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Complete Guide to Cryptography Algorithms | RSA, AES, DES, 3DES, Caesar, Playfair</title>
-  <meta name="description" content="Comprehensive guide to major cryptography algorithms: RSA, AES, DES, 3DES, Caesar, Playfair, Hill, Substitution, Simple Block. Learn how each algorithm works and its practical applications.">
-  <meta name="keywords" content="cryptography algorithms, RSA, AES, DES, 3DES, Caesar cipher, Playfair cipher, Hill cipher, substitution cipher, block cipher, data encryption, information security">
-  
-  <meta property="og:title" content="Complete Guide to Cryptography Algorithms | RSA, AES, DES, 3DES, Caesar">
-  <meta property="og:description" content="Learn about major cryptography algorithms and how they work to secure your data.">
-  <meta property="og:image" content="./assets/images/crypto-thumbnail.jpg">
-  <meta property="og:url" content="https://yourdomain.com/cryptography-guide">
-  <meta property="og:type" content="website">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Complete Guide to Cryptography Algorithms">
-  <meta name="twitter:description" content="Detailed guide to major cryptography algorithms: RSA, AES, DES, 3DES, Caesar, Playfair, Hill">
-  
-  <link rel="canonical" href="https://yourdomain.com/cryptography-guide">
-  
-  <meta http-equiv="Content-Language" content="en">
-  <meta name="language" content="English">
-  
-  <meta name="author" content="Your Name or Organization">
-  
-  <link rel="stylesheet" href="./assets/style/main.css">
-  <link rel="stylesheet" href="./assets/style/style.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  
-  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
-  
-  <meta name="theme-color" content="#2c3e50">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>
+      Complete Guide to Cryptography Algorithms | RSA, AES, DES, 3DES, Caesar,
+      Playfair
+    </title>
+    <meta
+      name="description"
+      content="Comprehensive guide to major cryptography algorithms: RSA, AES, DES, 3DES, Caesar, Playfair, Hill, Substitution, Simple Block. Learn how each algorithm works and its practical applications."
+    />
+    <meta
+      name="keywords"
+      content="cryptography algorithms, RSA, AES, DES, 3DES, Caesar cipher, Playfair cipher, Hill cipher, substitution cipher, block cipher, data encryption, information security"
+    />
 
+    <meta
+      property="og:title"
+      content="Complete Guide to Cryptography Algorithms | RSA, AES, DES, 3DES, Caesar"
+    />
+    <meta
+      property="og:description"
+      content="Learn about major cryptography algorithms and how they work to secure your data."
+    />
+    <meta property="og:image" content="./assets/images/crypto-thumbnail.jpg" />
+    <meta
+      property="og:url"
+      content="https://yourdomain.com/cryptography-guide"
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Complete Guide to Cryptography Algorithms"
+    />
+    <meta
+      name="twitter:description"
+      content="Detailed guide to major cryptography algorithms: RSA, AES, DES, 3DES, Caesar, Playfair, Hill"
+    />
+
+    <link rel="canonical" href="https://yourdomain.com/cryptography-guide" />
+
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="language" content="English" />
+
+    <meta name="author" content="Your Name or Organization" />
+
+    <link rel="stylesheet" href="./assets/style/main.css" />
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/images/apple-touch-icon.png"
+    />
+
+    <meta name="theme-color" content="#2c3e50" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+  </head>
+  <body>
     <main class="main-content-wrapper">
-
-<div id="container">
-  <div id="text" class="algorithm"></div>
-</div>
-
-
-
-
-  
-  <header>
-        <div class="header-wrapper">
-  <div class="container-default w-container">
-    <div class="header-content-wrapper">
-      <div class="header-left-side">
-        <a href="https://3mmarx3.github.io/Cryptography/" class="header-logo-link w-nav-brand">
-          <img src="https://cdn.prod.website-files.com/64d2cc2d27b51cf1b517c011/6616b1c13ffb5841a23a15ea_logo-cryptoverse-x-webflow-template.png" alt="Logo - Cryptoverse X Webflow Template">
-        </a>
-
-        <nav class="header-nav-menu-wrapper">
-          <ul class="header-nav-menu-list">
-            <li class="header-nav-list-item">
-              <a href="https://3mmarx3.github.io/Cryptography/" class="header-nav-link">Home</a>
-            </li>
-            <li class="header-nav-list-item">
-              <a href="https://eng-ammar.com/page/about.php" class="header-nav-link">About</a>
-            </li>
-            <li class="header-nav-list-item">
-              <a href="https://eng-ammar.com/page/project.php" class="header-nav-link">Blog</a>
-            </li>
-            <li class="header-nav-list-item">
-              <a href="https://eng-ammar.com" class="btn-primary small w-button">Get started</a>
-            </li>
-          </ul>
-        </nav>
+      <div id="container">
+        <div id="text" class="algorithm"></div>
       </div>
 
-<div class="header-right-side">
-  <div class="social-media-links-container">
-    <a href="https://www.facebook.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Facebook">
-      <i class="bi bi-facebook" aria-hidden="true"></i>
-    </a>
+      <header id="header"></header>
 
-    <a href="https://www.instagram.com/3mmarx3/" target="_blank" class="social-link-single" aria-label="Instagram">
-      <i class="bi bi-instagram" aria-hidden="true"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/eng-ammar-ahmed/" target="_blank" class="social-link-single" aria-label="LinkedIn">
-      <i class="bi bi-linkedin" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
+      <div class="container-default w-container">
+        <div class="w-layout-grid grid-2-columns template-page-sidebar">
+          <div class="sticky-top top-24px static-mbl">
+            <div data-w-id="88865d55-0bbf-8626-0acf-c8c2c6ddfe82" class="card">
+              <div class="pd---content-inside-card template-pages---sidebar">
+                <ul
+                  role="list"
+                  class="template-pages---sidebar-navigation"
+                  id="sidebar-nav"
+                >
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#rsa" class="template-pages---nav-item-link"
+                      >RSA</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#aes" class="template-pages---nav-item-link"
+                      >AES</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#des" class="template-pages---nav-item-link"
+                      >DES</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#3des" class="template-pages---nav-item-link"
+                      >3DES</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#caesar" class="template-pages---nav-item-link"
+                      >Caesar</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#playfair" class="template-pages---nav-item-link"
+                      >Playfair</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a href="#hill" class="template-pages---nav-item-link"
+                      >Hill</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a
+                      href="#substitution"
+                      class="template-pages---nav-item-link"
+                      >Substitution</a
+                    >
+                  </li>
+                  <li class="template-pages---nav-item-wrapper">
+                    <a
+                      href="#simple-block"
+                      class="template-pages---nav-item-link"
+                      >Simple Block</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-    </div>
-  </div>
-</div>
-  </header>
+            <p
+              class="text-theme-sm mb-4 text-center text-gray-500 dark:text-gray-400"
+            >
+              <span class="font-medium text-primary-600 dark:text-primary-400">
+                <span class="_coby"> Eng - Ammar Ahmed © 2025</span>
+              </span>
+            </p>
+          </div>
 
-  <div class="container-default w-container">
-    <div class="w-layout-grid grid-2-columns template-page-sidebar">
-
-
-      <div class=" sticky-top top-24px static-mbl">
-
-              <div data-w-id="88865d55-0bbf-8626-0acf-c8c2c6ddfe82" class="card ">
-        <div class="pd---content-inside-card template-pages---sidebar">
-          <ul role="list" class="template-pages---sidebar-navigation" id="sidebar-nav">
-            <li class="template-pages---nav-item-wrapper"><a href="#rsa" class="template-pages---nav-item-link">RSA</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#aes" class="template-pages---nav-item-link">AES</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#des" class="template-pages---nav-item-link">DES</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#3des" class="template-pages---nav-item-link">3DES</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#caesar" class="template-pages---nav-item-link">Caesar</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#playfair" class="template-pages---nav-item-link">Playfair</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#hill" class="template-pages---nav-item-link">Hill</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#substitution" class="template-pages---nav-item-link">Substitution</a></li>
-            <li class="template-pages---nav-item-wrapper"><a href="#simple-block" class="template-pages---nav-item-link">Simple Block</a></li>
-          </ul>
-        </div>
-
-
-   
-      </div>
-
-
-      <p class="text-theme-sm mb-4 text-center text-gray-500 dark:text-gray-400">
-                    <span class="font-medium text-primary-600 dark:text-primary-400"> <span class="_coby"> Eng - Ammar Ahmed © 2025</span> </span>
-               
+          <div data-w-id="f0b43e74-8966-cb8c-1d78-0ded2bbdbd8e" class="card">
+            <div class="pd---content-inside-card large template-pages">
+              <div
+                id="introduction"
+                class="rich-text w-richtext animate-fade-in-up"
+                data-aos="fade-up"
+              >
+                <h2>Introduction to Cryptography Algorithms</h2>
+                <p>
+                  This guide provides a comprehensive overview of various
+                  cryptography algorithms, including symmetric and asymmetric
+                  encryption methods. Each section delves into the history,
+                  mechanics, strengths, weaknesses, and real-world applications
+                  of the algorithm. Cryptography plays a crucial role in
+                  securing digital communications, protecting sensitive data,
+                  and ensuring privacy in the modern world.
                 </p>
+              </div>
 
-      </div>
-      
+              <hr class="section-separator" />
 
-      <div data-w-id="f0b43e74-8966-cb8c-1d78-0ded2bbdbd8e" class="card">
-        <div class="pd---content-inside-card large template-pages">
-          <div id="introduction" class="rich-text w-richtext animate-fade-in-up" data-aos="fade-up">
-            <h2>Introduction to Cryptography Algorithms</h2>
-            <p>This guide provides a comprehensive overview of various cryptography algorithms, including symmetric and asymmetric encryption methods. Each section delves into the history, mechanics, strengths, weaknesses, and real-world applications of the algorithm. Cryptography plays a crucial role in securing digital communications, protecting sensitive data, and ensuring privacy in the modern world.</p>
-          </div>
+              <div class="algorithm-section" id="rsa" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/rsa.html"><h2>RSA Algorithm</h2></a>
+                  <img
+                    src="./assets/img/rsa.jpg"
+                    alt="RSA Encryption Illustration"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    RSA, named after its inventors Ron Rivest, Adi Shamir, and
+                    Leonard Adleman, is a widely used asymmetric cryptographic
+                    algorithm. Introduced in 1977, RSA relies on the
+                    mathematical difficulty of factoring large prime numbers. It
+                    uses a pair of keys: a public key for encryption and a
+                    private key for decryption.
+                  </p>
+                  <p>
+                    <strong>How RSA Works:</strong> The algorithm generates two
+                    large prime numbers, computes their product (n), and derives
+                    the public and private exponents. Encryption involves
+                    raising the plaintext to the power of the public exponent
+                    modulo n, while decryption uses the private exponent.
+                  </p>
+                  <p><strong>Key Features:</strong></p>
+                  <ul>
+                    <li>Key sizes typically range from 1024 to 4096 bits.</li>
+                    <li>
+                      Provides confidentiality, authentication, and
+                      non-repudiation.
+                    </li>
+                    <li>
+                      Computationally intensive for large keys, making it
+                      suitable for key exchange rather than bulk data
+                      encryption.
+                    </li>
+                  </ul>
+                  <p>
+                    <strong>Strengths:</strong> High security due to the
+                    factoring problem; widely adopted in protocols like SSL/TLS.
+                  </p>
+                  <p>
+                    <strong>Weaknesses:</strong> Vulnerable to quantum attacks
+                    (e.g., Shor's algorithm); slower than symmetric algorithms.
+                  </p>
+                  <p>
+                    <strong>Applications:</strong> Secure email (PGP), digital
+                    signatures, VPNs, and online banking.
+                  </p>
+                </div>
+              </div>
 
-          <hr class="section-separator">
+              <hr class="section-separator" />
 
-          <div class="algorithm-section" id="rsa" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-              <a href="./assets/page/rsa.html"><h2>RSA Algorithm</h2></a>
-              <img src="./assets/img/rsa.jpg" alt="RSA Encryption Illustration" class="algorithm-image">
-              <p>RSA, named after its inventors Ron Rivest, Adi Shamir, and Leonard Adleman, is a widely used asymmetric cryptographic algorithm. Introduced in 1977, RSA relies on the mathematical difficulty of factoring large prime numbers. It uses a pair of keys: a public key for encryption and a private key for decryption.</p>
-              <p><strong>How RSA Works:</strong> The algorithm generates two large prime numbers, computes their product (n), and derives the public and private exponents. Encryption involves raising the plaintext to the power of the public exponent modulo n, while decryption uses the private exponent.</p>
-              <p><strong>Key Features:</strong></p>
-              <ul>
-                <li>Key sizes typically range from 1024 to 4096 bits.</li>
-                <li>Provides confidentiality, authentication, and non-repudiation.</li>
-                <li>Computationally intensive for large keys, making it suitable for key exchange rather than bulk data encryption.</li>
-              </ul>
-              <p><strong>Strengths:</strong> High security due to the factoring problem; widely adopted in protocols like SSL/TLS.</p>
-              <p><strong>Weaknesses:</strong> Vulnerable to quantum attacks (e.g., Shor's algorithm); slower than symmetric algorithms.</p>
-              <p><strong>Applications:</strong> Secure email (PGP), digital signatures, VPNs, and online banking.</p>
-            </div>
-          </div>
+              <div class="algorithm-section" id="aes" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/aes.html"><h2>AES Algorithm</h2></a>
 
-          <hr class="section-separator">
+                  <img
+                    src="./assets/img/aes.jpg"
+                    alt="AES Encryption Process"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    The Advanced Encryption Standard (AES), also known as
+                    Rijndael, is a symmetric block cipher adopted by the U.S.
+                    government in 2001. Developed by Vincent Rijmen and Joan
+                    Daemen, AES replaced DES as the standard for secure data
+                    encryption.
+                  </p>
+                  <p>
+                    <strong>How AES Works:</strong> AES operates on 128-bit
+                    blocks and supports key sizes of 128, 192, or 256 bits. It
+                    uses a series of rounds involving substitution, permutation,
+                    and mixing operations.
+                  </p>
+                  <p><strong>Key Features:</strong></p>
+                  <ul>
+                    <li>Block size: 128 bits.</li>
+                    <li>
+                      Number of rounds: 10 (128-bit key), 12 (192-bit), 14
+                      (256-bit).
+                    </li>
+                    <li>Uses S-boxes and Galois field arithmetic.</li>
+                  </ul>
+                  <p>
+                    <strong>Strengths:</strong> Fast, secure, efficient;
+                    resistant to known attacks.
+                  </p>
+                  <p>
+                    <strong>Weaknesses:</strong> Requires secure key
+                    distribution; possible side-channel attacks.
+                  </p>
+                  <p>
+                    <strong>Applications:</strong> Disk encryption, WPA2, VPNs,
+                    secure communications.
+                  </p>
+                </div>
+              </div>
 
-          <div class="algorithm-section" id="aes" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-      
-              <a href="./assets/page/aes.html"><h2>AES Algorithm</h2></a>
+              <hr class="section-separator" />
 
-              <img src="./assets/img/aes.jpg" alt="AES Encryption Process" class="algorithm-image">
-              <p>The Advanced Encryption Standard (AES), also known as Rijndael, is a symmetric block cipher adopted by the U.S. government in 2001. Developed by Vincent Rijmen and Joan Daemen, AES replaced DES as the standard for secure data encryption.</p>
-              <p><strong>How AES Works:</strong> AES operates on 128-bit blocks and supports key sizes of 128, 192, or 256 bits. It uses a series of rounds involving substitution, permutation, and mixing operations.</p>
-              <p><strong>Key Features:</strong></p>
-              <ul>
-                <li>Block size: 128 bits.</li>
-                <li>Number of rounds: 10 (128-bit key), 12 (192-bit), 14 (256-bit).</li>
-                <li>Uses S-boxes and Galois field arithmetic.</li>
-              </ul>
-              <p><strong>Strengths:</strong> Fast, secure, efficient; resistant to known attacks.</p>
-              <p><strong>Weaknesses:</strong> Requires secure key distribution; possible side-channel attacks.</p>
-              <p><strong>Applications:</strong> Disk encryption, WPA2, VPNs, secure communications.</p>
-            </div>
-          </div>
+              <div class="algorithm-section" id="des" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/des.html">
+                    <h2>DES Algorithm (Data Encryption Standard)</h2></a
+                  >
+                  <img
+                    src="./assets/img/des.jpg"
+                    alt="DES Cipher Structure"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    The Data Encryption Standard (DES) is a symmetric-key block
+                    cipher developed by IBM and adopted by the U.S. government
+                    as a standard in 1977.
+                  </p>
+                  <p><strong>How DES Works:</strong></p>
+                  <ul>
+                    <li>
+                      It encrypts data blocks of **64 bits** using an effective
+                      key size of **56 bits** (although the input key is 64
+                      bits, 8 bits are used for parity checking).
+                    </li>
+                    <li>
+                      The algorithm relies on **16 rounds** of a Feistel
+                      structure, utilizing Substitution Boxes (S-boxes) and
+                      Permutation Boxes (P-boxes).
+                    </li>
+                  </ul>
+                  <p><strong>Weaknesses and Obsolescence:</strong></p>
+                  <ul>
+                    <li>
+                      Today, the **56-bit key is considered too short**, making
+                      it vulnerable to brute-force attacks within hours using
+                      specialized hardware. It has been officially retired for
+                      sensitive use, replaced by AES and 3DES.
+                    </li>
+                  </ul>
+                  <p>
+                    <strong>Applications:</strong> Legacy systems, the
+                    foundation for the 3DES algorithm.
+                  </p>
+                </div>
+              </div>
 
-          <hr class="section-separator">
+              <hr class="section-separator" />
 
-          <div class="algorithm-section" id="des" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-             <a href="./assets/page/des.html"> <h2>DES Algorithm (Data Encryption Standard)</h2></a>
-              <img src="./assets/img/des.jpg" alt="DES Cipher Structure" class="algorithm-image">
-              <p>The Data Encryption Standard (DES) is a symmetric-key block cipher developed by IBM and adopted by the U.S. government as a standard in 1977.</p>
-              <p><strong>How DES Works:</strong></p>
-              <ul>
-                <li>It encrypts data blocks of **64 bits** using an effective key size of **56 bits** (although the input key is 64 bits, 8 bits are used for parity checking).</li>
-                <li>The algorithm relies on **16 rounds** of a Feistel structure, utilizing Substitution Boxes (S-boxes) and Permutation Boxes (P-boxes). </li>
-              </ul>
-              <p><strong>Weaknesses and Obsolescence:</strong></p>
-              <ul>
-                <li>Today, the **56-bit key is considered too short**, making it vulnerable to brute-force attacks within hours using specialized hardware. It has been officially retired for sensitive use, replaced by AES and 3DES.</li>
-              </ul>
-              <p><strong>Applications:</strong> Legacy systems, the foundation for the 3DES algorithm.</p>
-            </div>
-          </div>
+              <div class="algorithm-section" id="3des" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/des_3.html"
+                    ><h2>
+                      3DES Algorithm (Triple Data Encryption Standard)
+                    </h2></a
+                  >
 
-          <hr class="section-separator">
+                  <img
+                    src="./assets/img/des3.jpg"
+                    alt="3DES Triple Encryption"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    Triple DES (or TDES) is a method of applying the original
+                    DES algorithm three times consecutively to enhance
+                    cryptographic strength and overcome the weakness of the
+                    short 56-bit key.
+                  </p>
+                  <p><strong>How 3DES Works:</strong></p>
+                  <ul>
+                    <li>
+                      It typically uses the Encrypt-Decrypt-Encrypt (EDE) mode
+                      with two or three different keys (K1, K2, K3).
+                    </li>
+                    <li>
+                      The ciphertext is computed by: $C =
+                      E_{K3}(D_{K2}(E_{K1}(P)))$.
+                    </li>
+                  </ul>
+                  <p><strong>Key Features:</strong></p>
+                  <ul>
+                    <li>
+                      **Effective Key Length:** 112 bits (when K1=K3) or 168
+                      bits (when K1, K2, K3 are distinct).
+                    </li>
+                    <li>
+                      Provides a significantly higher level of security than
+                      single DES.
+                    </li>
+                  </ul>
+                  <p><strong>Weaknesses and Modern Usage:</strong></p>
+                  <ul>
+                    <li>It is **significantly slower** than AES.</li>
+                    <li>
+                      It is theoretically vulnerable to the Meet-in-the-Middle
+                      Attack, which reduces its effective strength (e.g., to 112
+                      bits even with three keys).
+                    </li>
+                    <li>It is currently being phased out in favor of AES.</li>
+                  </ul>
+                  <p>
+                    <strong>Applications:</strong> Banking payment systems
+                    (e.g., ATMs), legacy infrastructure requiring strong
+                    security.
+                  </p>
+                </div>
+              </div>
 
-          <div class="algorithm-section" id="3des" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-   
-              <a href="./assets/page/des_3.html"><h2>3DES Algorithm (Triple Data Encryption Standard)</h2></a>
+              <hr class="section-separator" />
 
-              <img src="./assets/img/des3.jpg" alt="3DES Triple Encryption" class="algorithm-image">
-              <p>Triple DES (or TDES) is a method of applying the original DES algorithm three times consecutively to enhance cryptographic strength and overcome the weakness of the short 56-bit key.</p>
-              <p><strong>How 3DES Works:</strong></p>
-              <ul>
-                <li>It typically uses the Encrypt-Decrypt-Encrypt (EDE) mode with two or three different keys (K1, K2, K3).</li>
-                <li>The ciphertext is computed by: $C = E_{K3}(D_{K2}(E_{K1}(P)))$.</li>
-              </ul>
-              <p><strong>Key Features:</strong></p>
-              <ul>
-                <li>**Effective Key Length:** 112 bits (when K1=K3) or 168 bits (when K1, K2, K3 are distinct).</li>
-                <li>Provides a significantly higher level of security than single DES.</li>
-              </ul>
-              <p><strong>Weaknesses and Modern Usage:</strong></p>
-              <ul>
-                <li>It is **significantly slower** than AES.</li>
-                <li>It is theoretically vulnerable to the Meet-in-the-Middle Attack, which reduces its effective strength (e.g., to 112 bits even with three keys).</li>
-                <li>It is currently being phased out in favor of AES.</li>
-              </ul>
-              <p><strong>Applications:</strong> Banking payment systems (e.g., ATMs), legacy infrastructure requiring strong security.</p>
-            </div>
-          </div>
+              <div class="algorithm-section" id="caesar" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/caesar.html"><h2>Caesar Cipher</h2></a>
+                  <img
+                    src="./assets/img/Caesar.jpg"
+                    alt="Caesar Cipher Alphabet Shift"
+                    class="algorithm-image"
+                  />
+                  <p>Ancient shift cipher used by Julius Caesar.</p>
+                  <p>
+                    <strong>How it Works:</strong> Each letter shifted by fixed
+                    number (e.g., 3 positions).
+                  </p>
+                  <p><strong>Strengths:</strong> Very easy to use.</p>
+                  <p>
+                    <strong>Weaknesses:</strong> Broken by frequency analysis in
+                    seconds.
+                  </p>
+                  <p><strong>Applications:</strong> Teaching, puzzles.</p>
+                </div>
+              </div>
 
-          <hr class="section-separator">
+              <hr class="section-separator" />
 
-          <div class="algorithm-section" id="caesar" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-              <a href="./assets/page/caesar.html"><h2>Caesar Cipher</h2></a>
-              <img src="./assets/img/Caesar.jpg" alt="Caesar Cipher Alphabet Shift" class="algorithm-image">
-              <p>Ancient shift cipher used by Julius Caesar.</p>
-              <p><strong>How it Works:</strong> Each letter shifted by fixed number (e.g., 3 positions).</p>
-              <p><strong>Strengths:</strong> Very easy to use.</p>
-              <p><strong>Weaknesses:</strong> Broken by frequency analysis in seconds.</p>
-              <p><strong>Applications:</strong> Teaching, puzzles.</p>
-            </div>
-          </div>
+              <div class="algorithm-section" id="playfair" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/playfair.html">
+                    <h2>Playfair Cipher</h2></a
+                  >
+                  <img
+                    src="./assets/img/Playfair.jpg"
+                    alt="Playfair Cipher Grid"
+                    class="algorithm-image"
+                  />
+                  <p>Digraph substitution cipher using 5×5 grid.</p>
+                  <p>
+                    <strong>How it Works:</strong> Letters paired and encrypted
+                    by rectangle, row, or column rules.
+                  </p>
+                  <p>
+                    <strong>Strengths:</strong> Hides letter frequency better
+                    than monoalphabetic.
+                  </p>
+                  <p><strong>Weaknesses:</strong> Still broken easily today.</p>
+                  <p>
+                    <strong>Applications:</strong> WWI/WWII field ciphers,
+                    education.
+                  </p>
+                </div>
+              </div>
 
-          <hr class="section-separator">
+              <hr class="section-separator" />
 
-          <div class="algorithm-section" id="playfair" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-           <a href="./assets/page/playfair.html">   <h2>Playfair Cipher</h2></a>
-              <img src="./assets/img/Playfair.jpg" alt="Playfair Cipher Grid" class="algorithm-image">
-              <p>Digraph substitution cipher using 5×5 grid.</p>
-              <p><strong>How it Works:</strong> Letters paired and encrypted by rectangle, row, or column rules.</p>
-              <p><strong>Strengths:</strong> Hides letter frequency better than monoalphabetic.</p>
-              <p><strong>Weaknesses:</strong> Still broken easily today.</p>
-              <p><strong>Applications:</strong> WWI/WWII field ciphers, education.</p>
-            </div>
-          </div>
+              <div class="algorithm-section" id="hill" data-aos="fade-up">
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/hill.html"> <h2>Hill Cipher</h2></a>
+                  <img
+                    src="./assets/img/Hill.jpg"
+                    alt="Hill Cipher Matrix Operations"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    Polygraphic cipher using linear algebra and matrix
+                    multiplication mod 26.
+                  </p>
+                  <p>
+                    <strong>How it Works:</strong> Plaintext blocks × key matrix
+                    = ciphertext.
+                  </p>
+                  <p>
+                    <strong>Strengths:</strong> Diffuses statistics across
+                    block.
+                  </p>
+                  <p>
+                    <strong>Weaknesses:</strong> Vulnerable to known-plaintext
+                    attack.
+                  </p>
+                  <p><strong>Applications:</strong> Academic teaching.</p>
+                </div>
+              </div>
 
-          <hr class="section-separator">
+              <hr class="section-separator" />
 
-          <div class="algorithm-section" id="hill" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
+              <div
+                class="algorithm-section"
+                id="substitution"
+                data-aos="fade-up"
+              >
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/Substitution.html">
+                    <h2>Substitution Cipher</h2></a
+                  >
+                  <img
+                    src="./assets/img/Substitution.jpg"
+                    alt="Substitution Cipher Alphabet"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    General class where each letter is replaced by another
+                    according to a fixed system.
+                  </p>
+                  <p>
+                    <strong>Types:</strong> Monoalphabetic, Polyalphabetic
+                    (e.g., Vigenère).
+                  </p>
+                  <p><strong>Strengths:</strong> Simple concept.</p>
+                  <p>
+                    <strong>Weaknesses:</strong> Monoalphabetic broken by
+                    frequency analysis; polyalphabetic stronger but still
+                    crackable.
+                  </p>
+                </div>
+              </div>
 
-              <a href="./assets/page/hill.html">              <h2>Hill Cipher</h2></a>
-              <img src="./assets/img/Hill.jpg" alt="Hill Cipher Matrix Operations" class="algorithm-image">
-              <p>Polygraphic cipher using linear algebra and matrix multiplication mod 26.</p>
-              <p><strong>How it Works:</strong> Plaintext blocks × key matrix = ciphertext.</p>
-              <p><strong>Strengths:</strong> Diffuses statistics across block.</p>
-              <p><strong>Weaknesses:</strong> Vulnerable to known-plaintext attack.</p>
-              <p><strong>Applications:</strong> Academic teaching.</p>
-            </div>
-          </div>
+              <hr class="section-separator" />
 
-          <hr class="section-separator">
-
-          <div class="algorithm-section" id="substitution" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-         <a href="./assets/page/Substitution.html">     <h2>Substitution Cipher</h2></a>
-              <img src="./assets/img/Substitution.jpg" alt="Substitution Cipher Alphabet" class="algorithm-image">
-              <p>General class where each letter is replaced by another according to a fixed system.</p>
-              <p><strong>Types:</strong> Monoalphabetic, Polyalphabetic (e.g., Vigenère).</p>
-              <p><strong>Strengths:</strong> Simple concept.</p>
-              <p><strong>Weaknesses:</strong> Monoalphabetic broken by frequency analysis; polyalphabetic stronger but still crackable.</p>
-            </div>
-          </div>
-
-          <hr class="section-separator">
-
-          <div class="algorithm-section" id="simple-block" data-aos="fade-up">
-            <div class="rich-text mg-bottom-24px w-richtext animate-fade-in-up">
-<a href="./assets/page/Simple.html">              <h2>Simple Block Cipher</h2></a>
-              <img src="./assets/img/Simple.jpg" alt="Simple Block Cipher Diagram" class="algorithm-image">
-              <p>Educational block cipher demonstrating confusion and diffusion with basic operations (XOR, S-box, permutation).</p>
-              <p><strong>Purpose:</strong> Teaching principles, not real security.</p>
-              <p><strong>Strengths:</strong> Easy to understand Feistel or SPN structure.</p>
-              <p><strong>Weaknesses:</strong> Completely insecure in practice.</p>
+              <div
+                class="algorithm-section"
+                id="simple-block"
+                data-aos="fade-up"
+              >
+                <div
+                  class="rich-text mg-bottom-24px w-richtext animate-fade-in-up"
+                >
+                  <a href="./assets/page/Simple.html">
+                    <h2>Simple Block Cipher</h2></a
+                  >
+                  <img
+                    src="./assets/img/Simple.jpg"
+                    alt="Simple Block Cipher Diagram"
+                    class="algorithm-image"
+                  />
+                  <p>
+                    Educational block cipher demonstrating confusion and
+                    diffusion with basic operations (XOR, S-box, permutation).
+                  </p>
+                  <p>
+                    <strong>Purpose:</strong> Teaching principles, not real
+                    security.
+                  </p>
+                  <p>
+                    <strong>Strengths:</strong> Easy to understand Feistel or
+                    SPN structure.
+                  </p>
+                  <p>
+                    <strong>Weaknesses:</strong> Completely insecure in
+                    practice.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </main>
 
-  </main>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="./assets/app/script.js"></script>
-
-</body>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./assets/app/script.js"></script>
+    <script src="./assets/app/header.js"></script>
+  </body>
 </html>
